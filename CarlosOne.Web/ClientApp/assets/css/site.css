@@ -1,2 +1,7 @@
+* {
+    min-height: 0.01px;
+}
+
 body {
+    height: 100%;
 }

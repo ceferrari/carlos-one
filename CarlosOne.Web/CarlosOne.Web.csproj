@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,34 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="LazyCache" Version="2.0.0-beta03" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Files not to show in IDE -->
-    <None Remove="yarn.lock" />
-
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Content Remove="ClientApp\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec Command="node -e &quot;console.log('NPM Installing dependencies...')&quot;" />
-    <Exec Command="npm install --ignore-scripts" />
-    <Exec Command="npm run build" />
-
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
+  <Target Name="BuildWebpack" BeforeTargets="Restore">
+    <Exec Condition="$(Configuration) == 'Debug'" Command="npm run build:dev" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run build:prod" />
   </Target>
 
 </Project>
