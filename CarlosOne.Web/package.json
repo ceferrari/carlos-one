@@ -17,12 +17,12 @@
     "build:prod": "cross-env NODE_ENV=production webpack --progress",
     "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run -c Debug",
     "prod": "cross-env ASPNETCORE_ENVIRONMENT=Production NODE_ENV=production dotnet run -c Release",
-    "publish": "rd /s /q bin obj publish && dotnet publish -c Release -o publish -r win-x64 --self-contained",
-    "lint": "eslint -c ./.eslintrc.js ClientApp/**/*.js  ClientApp/**/*.vue  *config.js",
+    "clean": "if exist bin rd /s /q bin & if exist obj rd /s /q obj & if exist publish rd /s /q publish",
+    "publish": "npm run clean && dotnet publish -c Release -o publish -r win-x64 --self-contained",
+    "lint": "eslint -c ./.eslintrc.js *config.js ClientApp/**/*.vue ClientApp/**/*.js && stylelint ClientApp/**/*.css",
     "update-packages": "npx npm-check -u"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
     "@babel/runtime": "^7.4.5",
     "@babel/runtime-corejs3": "^7.4.5",
     "axios": "^0.19.0",
@@ -67,6 +67,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "popper.js": "^1.15.0",
     "style-loader": "^0.23.1",
+    "stylelint": "^10.0.1",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.6.2",
     "webpack": "^4.32.2",

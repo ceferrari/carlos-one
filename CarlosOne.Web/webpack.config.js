@@ -7,9 +7,7 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const bundleOutputDir = "./wwwroot/dist";
 
 module.exports = () => {
-  const isDevBuild = !(
-    process.env.NODE_ENV && process.env.NODE_ENV === "production"
-  );
+  const isDevBuild = !(process.env.NODE_ENV && process.env.NODE_ENV === "production");
   return [
     {
       mode: isDevBuild ? "development" : "production",
@@ -30,12 +28,7 @@ module.exports = () => {
         rules: [
           { test: /\.vue$/, include: /ClientApp/, use: "vue-loader" },
           { test: /\.js$/, include: /ClientApp/, use: "babel-loader" },
-          {
-            test: /\.css$/,
-            use: isDevBuild
-              ? ["style-loader", "css-loader"]
-              : [MiniCssExtractPlugin.loader, "css-loader"]
-          },
+          { test: /\.css$/, use: isDevBuild ? ["style-loader", "css-loader"] : [MiniCssExtractPlugin.loader, "css-loader"] },
           {
             test: /\.(png|jpg|jpeg|gif|svg)$/,
             use: [
@@ -57,6 +50,7 @@ module.exports = () => {
         chunkFilename: isDevBuild ? "[name].js" : "[name].[chunkhash].js"
       },
       optimization: {
+        runtimeChunk: "single",
         splitChunks: {
           cacheGroups: {
             vendor: {
@@ -82,19 +76,14 @@ module.exports = () => {
               new webpack.SourceMapDevToolPlugin({
                 exclude: /vendor.*.*/,
                 filename: "[file].map",
-                moduleFilenameTemplate: path.relative(
-                  bundleOutputDir,
-                  "[resourcePath]"
-                )
+                moduleFilenameTemplate: path.relative(bundleOutputDir, "[resourcePath]")
               })
             ]
           : [
               new webpack.HashedModuleIdsPlugin(),
               new MiniCssExtractPlugin({
                 filename: isDevBuild ? "[name].css" : "[name].[hash].css",
-                chunkFilename: isDevBuild
-                  ? "[name].css"
-                  : "[name].[chunkhash].css"
+                chunkFilename: isDevBuild ? "[name].css" : "[name].[chunkhash].css"
               }),
               new OptimizeCSSPlugin({
                 cssProcessorOptions: {
