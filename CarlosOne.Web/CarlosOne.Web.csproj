@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.3" />
     <PackageReference Include="LazyCache" Version="2.0.0-beta03" />
   </ItemGroup>
 
-  <Target Name="BuildWebpack" BeforeTargets="Restore">
+  <Target Name="BuildWebpack" BeforeTargets="Restore;Run">
     <Exec Condition="$(Configuration) == 'Debug'" Command="npm run build:dev" />
     <Exec Condition="$(Configuration) == 'Release'" Command="npm run build:prod" />
   </Target>
