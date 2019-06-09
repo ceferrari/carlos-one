@@ -3,11 +3,11 @@ import axios from "axios";
 import store from "./store";
 import router from "./router";
 import { sync } from "vuex-router-sync";
-import { FontAwesomeIcon } from "./icons"
+import { FontAwesomeIcon } from "./icons";
 import App from "components/app-root";
 import "./registerServiceWorker";
 
-Vue.component("icon", FontAwesomeIcon)
+Vue.component("icon", FontAwesomeIcon);
 
 Vue.prototype.$http = axios;
 
