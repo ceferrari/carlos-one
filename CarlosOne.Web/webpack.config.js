@@ -46,10 +46,12 @@ module.exports = () => {
       output: {
         path: path.join(__dirname, bundleOutputDir),
         publicPath: "/dist/",
-        filename: isDevBuild ? "[name].js" : "[name].[hash].js",
+        filename: isDevBuild ? "[name].js" : "[name].[contenthash].js",
         chunkFilename: isDevBuild ? "[name].js" : "[name].[chunkhash].js"
       },
       optimization: {
+        chunkIds: "named",
+        moduleIds: "named",
         runtimeChunk: "single",
         splitChunks: {
           cacheGroups: {
@@ -82,7 +84,7 @@ module.exports = () => {
           : [
               new webpack.HashedModuleIdsPlugin(),
               new MiniCssExtractPlugin({
-                filename: isDevBuild ? "[name].css" : "[name].[hash].css",
+                filename: isDevBuild ? "[name].css" : "[name].[contenthash].css",
                 chunkFilename: isDevBuild ? "[name].css" : "[name].[chunkhash].css"
               }),
               new OptimizeCSSPlugin({

@@ -10,6 +10,6 @@
 //import HelloWorld from "components/app-root.vue";
 
 export default {
-  name: "home"
+  name: "Home"
 };
 </script>

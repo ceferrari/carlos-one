@@ -1,17 +1,37 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true
+  "root": true,
+  "env": {
+    "es6": true,
+    "node": true
   },
-  extends: ["plugin:vue/essential", "@vue/prettier"],
-  rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    //"linebreak-style": 0,
-    "eslint linebreak-style": [0, "error", "unix"],
-    "max-len": ["error", { "code": 9999 }]
+  "parserOptions": {
+    "parser": "babel-eslint"
   },
-  parserOptions: {
-    parser: "babel-eslint"
+  "extends": [
+    "plugin:vue/recommended",
+    "prettier",
+    "prettier/vue"
+  ],
+  "plugins": [
+    "prettier",
+    "vue"
+  ],
+  "rules": {
+    "max-len": [
+      "warn",
+      {
+        "code": 9999
+      }
+    ],
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 9999,
+        "singleQuote": false,
+        "semi": true,
+        "trailingComma": "none",
+        "tabWidth": 2
+      }
+    ]
   }
 };
