@@ -1,0 +1,67 @@
+<script>
+import AppFooter from "./footer";
+import AppHeader from "./header";
+import AppMessage from "./message";
+import AppOverlay from "./overlay";
+import AppSidebar from "./sidebar";
+
+export default {
+  components: {
+    appFooter: AppFooter,
+    appHeader: AppHeader,
+    appMessage: AppMessage,
+    appOverlay: AppOverlay,
+    appSidebar: AppSidebar
+  },
+  data() {
+    return {
+      innerWidth: 0,
+      sidebarToggled: false,
+      filtersToggled: false
+    };
+  },
+  mounted() {
+    let that = this;
+    this.$nextTick(() => {
+      window.addEventListener("resize", () => {
+        that.innerWidth = that.innerWidth || window.innerWidth;
+        if (this.timer) clearTimeout(this.timer);
+        this.timer = setTimeout(function() {
+          if (
+            (that.innerWidth < 768 && window.innerWidth >= 768) ||
+            (that.innerWidth > 768 && window.innerWidth <= 768) ||
+            (that.innerWidth < 1200 && window.innerWidth >= 1200) ||
+            (that.innerWidth > 1200 && window.innerWidth <= 1200)
+          ) {
+            that.sidebarToggled = that.filtersToggled = false;
+          }
+          that.innerWidth = 0;
+        }, 300);
+      });
+    });
+  }
+};
+</script>
+
+<template>
+  <main id="app" :class="{ 'sidebar-toggled': sidebarToggled, 'filters-toggled': filtersToggled }">
+    <keep-alive>
+      <app-sidebar v-once></app-sidebar>
+    </keep-alive>
+    <section id="app-content">
+      <keep-alive>
+        <app-header v-once></app-header>
+      </keep-alive>
+      <router-view></router-view>
+      <keep-alive>
+        <app-footer v-once></app-footer>
+      </keep-alive>
+    </section>
+    <keep-alive>
+      <app-message v-once></app-message>
+    </keep-alive>
+    <keep-alive>
+      <app-overlay v-once></app-overlay>
+    </keep-alive>
+  </main>
+</template>

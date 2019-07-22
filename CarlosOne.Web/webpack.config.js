@@ -36,7 +36,18 @@ module.exports = () => {
                 loader: "url-loader",
                 options: {
                   limit: 8192,
-                  name: "img/[hash]-[name].[ext]"
+                  name: "img/[name].[contenthash].[ext]"
+                }
+              }
+            ]
+          },
+          {
+            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            use: [
+              {
+                loader: "file-loader",
+                options: {
+                  name: "fonts/[name].[contenthash].[ext]"
                 }
               }
             ]
