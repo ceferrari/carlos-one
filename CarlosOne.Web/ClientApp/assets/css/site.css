@@ -9,7 +9,7 @@
   height: 100vh;
   position: fixed;
   transform: translateX(-15rem);
-  transition: transform .3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   will-change: transform;
   width: 15rem;
   z-index: 1090;
@@ -81,7 +81,6 @@
   justify-content: space-between;
   flex: 1;
   margin: 0;
-  transition: margin-left 0.3s linear, opacity 0.5s ease;
 }
 
 #app-sidebar > .brand-link,
@@ -173,7 +172,7 @@
 /* Media Queries */
 @media (max-width: 767.98px) {
   #app.sidebar-toggled #app-sidebar {
-    transform: translateX(0);
+    transform: none;
   }
 
   #app.sidebar-toggled #app-overlay {
@@ -183,15 +182,24 @@
 
 @media (min-width: 768px) {
   #app-sidebar {
-    transform: translateX(0);
+    transform: none;
+    /* transition: width 0.3s ease-in-out;
+    will-change: width; */
   }
 
   #app-content {
     margin-left: 15rem;
+    /* transition: margin-left 0.3s ease-in-out;
+    will-change: margin-left; */
   }
 
   #app-body {
     padding: 1.5rem;
+  }
+
+  #app-sidebar p {
+    transition: margin-left 0.3s linear, opacity 0.5s ease;
+    will-change: margin-left, opacity;
   }
 }
 

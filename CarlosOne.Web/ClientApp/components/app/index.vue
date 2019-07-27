@@ -29,7 +29,12 @@ export default {
         that.innerWidth = that.innerWidth || window.innerWidth;
         if (this.timer) clearTimeout(this.timer);
         this.timer = setTimeout(function() {
-          if ((that.innerWidth < 768 && window.innerWidth >= 768) || (that.innerWidth > 768 && window.innerWidth <= 768) || (that.innerWidth < 1200 && window.innerWidth >= 1200) || (that.innerWidth > 1200 && window.innerWidth <= 1200)) {
+          if (
+            (that.innerWidth < 768 && window.innerWidth >= 768) || //
+            (that.innerWidth > 768 && window.innerWidth <= 768) ||
+            (that.innerWidth < 1200 && window.innerWidth >= 1200) ||
+            (that.innerWidth > 1200 && window.innerWidth <= 1200)
+          ) {
             that.sidebarToggled = that.filtersToggled = false;
           }
           that.innerWidth = 0;

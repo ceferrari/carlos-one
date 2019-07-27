@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using Xunit;
 
-namespace CarlosOne.Tests
+namespace CarlosOne.Web.Tests.Utils
 {
     public class CacheTests
     {
