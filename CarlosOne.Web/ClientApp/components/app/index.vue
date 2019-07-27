@@ -4,6 +4,7 @@ import AppHeader from "./header";
 import AppMessage from "./message";
 import AppOverlay from "./overlay";
 import AppSidebar from "./sidebar";
+import AppStatus from "./status";
 
 export default {
   components: {
@@ -11,7 +12,8 @@ export default {
     appHeader: AppHeader,
     appMessage: AppMessage,
     appOverlay: AppOverlay,
-    appSidebar: AppSidebar
+    appSidebar: AppSidebar,
+    appStatus: AppStatus
   },
   data() {
     return {
@@ -27,12 +29,7 @@ export default {
         that.innerWidth = that.innerWidth || window.innerWidth;
         if (this.timer) clearTimeout(this.timer);
         this.timer = setTimeout(function() {
-          if (
-            (that.innerWidth < 768 && window.innerWidth >= 768) ||
-            (that.innerWidth > 768 && window.innerWidth <= 768) ||
-            (that.innerWidth < 1200 && window.innerWidth >= 1200) ||
-            (that.innerWidth > 1200 && window.innerWidth <= 1200)
-          ) {
+          if ((that.innerWidth < 768 && window.innerWidth >= 768) || (that.innerWidth > 768 && window.innerWidth <= 768) || (that.innerWidth < 1200 && window.innerWidth >= 1200) || (that.innerWidth > 1200 && window.innerWidth <= 1200)) {
             that.sidebarToggled = that.filtersToggled = false;
           }
           that.innerWidth = 0;
@@ -57,6 +54,9 @@ export default {
         <app-footer v-once></app-footer>
       </keep-alive>
     </section>
+    <keep-alive>
+      <app-status v-once></app-status>
+    </keep-alive>
     <keep-alive>
       <app-message v-once></app-message>
     </keep-alive>

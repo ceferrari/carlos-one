@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
@@ -17,6 +18,7 @@ module.exports = () => {
         extensions: [".js", ".vue"],
         alias: {
           vue$: "vue/dist/vue",
+          root: path.resolve(__dirname, "./ClientApp"),
           assets: path.resolve(__dirname, "./ClientApp/assets"),
           components: path.resolve(__dirname, "./ClientApp/components"),
           config: path.resolve(__dirname, "./ClientApp/config"),
@@ -36,7 +38,8 @@ module.exports = () => {
                 loader: "url-loader",
                 options: {
                   limit: 8192,
-                  name: "img/[name].[contenthash].[ext]"
+                  outputPath: "img",
+                  name: "[name].[contenthash].[ext]"
                 }
               }
             ]
@@ -47,7 +50,8 @@ module.exports = () => {
               {
                 loader: "file-loader",
                 options: {
-                  name: "fonts/[name].[contenthash].[ext]"
+                  outputPath: "fonts",
+                  name: "[name].[contenthash].[ext]"
                 }
               }
             ]
@@ -77,12 +81,13 @@ module.exports = () => {
       },
       plugins: [
         new CleanWebpackPlugin(),
-        new VueLoaderPlugin(),
+        new CopyWebpackPlugin([{ from: "./ClientApp/assets/pwa", to: "pwa" }]),
         new webpack.ProvidePlugin({
           $: "jquery",
           jQuery: "jquery",
           Popper: ["popper.js", "default"]
-        })
+        }),
+        new VueLoaderPlugin()
       ].concat(
         isDevBuild
           ? [

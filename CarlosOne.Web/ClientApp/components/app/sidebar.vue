@@ -32,7 +32,7 @@ export default {
         }
       }
     });
-    OverlayScrollbars(document.querySelectorAll("#app-sidebar>.nav-sidebar"), {
+    OverlayScrollbars(document.querySelector("#app-sidebar-nav"), {
       scrollbars: {
         autoHide: "move",
         visibility: "auto"
@@ -48,7 +48,7 @@ export default {
       <img :src="require('assets/img/logo.jpg')" alt="Logo" />
       <p class="font-weight-bold">Carlos One</p>
     </a>
-    <nav class="nav-sidebar">
+    <nav id="app-sidebar-nav" class="nav-sidebar">
       <ul class="nav flex-column" role="menu">
         <li class="user-item mb-3">
           <a href="#/" class="user-link text-decoration-none">

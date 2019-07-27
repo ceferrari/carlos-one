@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarlosOne.Web", "CarlosOne.Web\CarlosOne.Web.csproj", "{7800CC63-48CF-45C6-A3D1-B83DC2300A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarlosOne.Web", "CarlosOne.Web\CarlosOne.Web.csproj", "{7800CC63-48CF-45C6-A3D1-B83DC2300A83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarlosOne.Web.Tests", "CarlosOne.Web.Tests\CarlosOne.Web.Tests.csproj", "{91B531C6-5395-44CF-BD18-E785FE6817C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7800CC63-48CF-45C6-A3D1-B83DC2300A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7800CC63-48CF-45C6-A3D1-B83DC2300A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7800CC63-48CF-45C6-A3D1-B83DC2300A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B531C6-5395-44CF-BD18-E785FE6817C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B531C6-5395-44CF-BD18-E785FE6817C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B531C6-5395-44CF-BD18-E785FE6817C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B531C6-5395-44CF-BD18-E785FE6817C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

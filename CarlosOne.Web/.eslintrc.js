@@ -13,6 +13,8 @@ module.exports = {
     "prettier/vue"
   ],
   "plugins": [
+    "html",
+    "json",
     "prettier",
     "vue"
   ],

@@ -2,21 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
-    <PackageReference Include="LazyCache.AspNetCore" Version="2.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="ClientApp\**" />
   </ItemGroup>
 
   <PropertyGroup>
-    <DefaultItemExcludes>ClientApp\**;node_modules\**;$(DefaultItemExcludes)</DefaultItemExcludes>
+    <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes)</DefaultItemExcludes>
   </PropertyGroup>
 
   <Target Name="BuildWebpack" BeforeTargets="Restore">
