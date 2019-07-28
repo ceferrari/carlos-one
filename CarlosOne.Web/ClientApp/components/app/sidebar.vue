@@ -33,6 +33,7 @@ export default {
       }
     });
     OverlayScrollbars(document.querySelector("#app-sidebar-nav"), {
+      className: "os-theme-light",
       scrollbars: {
         autoHide: "move",
         visibility: "auto"

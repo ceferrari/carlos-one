@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const bundleOutputDir = "./wwwroot/dist";
 
@@ -81,11 +82,19 @@ module.exports = () => {
       },
       plugins: [
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin([{ from: "./ClientApp/assets/pwa", to: "pwa" }]),
+        new CopyWebpackPlugin([
+          {
+            from: "./ClientApp/assets/pwa",
+            to: "pwa"
+          }
+        ]),
         new webpack.ProvidePlugin({
           $: "jquery",
           jQuery: "jquery",
           Popper: ["popper.js", "default"]
+        }),
+        new MomentLocalesPlugin({
+          localesToKeep: ["pt-br"]
         }),
         new VueLoaderPlugin()
       ].concat(

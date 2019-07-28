@@ -5,10 +5,14 @@ import store from "./store";
 import router from "./router";
 import { sync } from "vuex-router-sync";
 import App from "components/app/index";
-import "./registerServiceWorker";
+// import "./registerServiceWorker";
+import moment from "moment-timezone";
+moment.locale("pt-br");
+moment.tz.setDefault("America/Sao_Paulo");
 
 Vue.prototype.$bus = EventBus;
 Vue.prototype.$http = axios;
+Vue.prototype.$moment = moment;
 
 Vue.config.productionTip = false;
 Vue.config.devtools = false;
